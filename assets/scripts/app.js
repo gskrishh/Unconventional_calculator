@@ -19,37 +19,57 @@ function entry(operator, befNum, reNum){
     console.log(logEntries);
 }
 
-function add(){
+function calcOperator(operator){
     let enteredNum = parseInt(userInput.value);
     let iniNum = existNum;
-    existNum += enteredNum;     
-    display('+', iniNum, enteredNum);
-    entry("ADD", enteredNum, existNum);    
+
+    if (
+        operator !== 'ADD' && 
+        operator !=='SUB' &&
+        operator !== 'MUL' &&
+        operator !== 'DIV'
+    ) {
+        return;
+    }
+    
+    if (operator == 'ADD'){
+        existNum += enteredNum;     
+        display('+', iniNum, enteredNum);  
+        entry("ADD", enteredNum, existNum);
+
+    }
+    else if(operator == 'SUB'){
+        existNum -= enteredNum;     
+        display('-', iniNum, enteredNum);  
+        entry("ADD", enteredNum, existNum);
+    }
+    else if(operator == 'MUL'){
+        existNum *= enteredNum;     
+        display('*', iniNum, enteredNum);  
+        entry("ADD", enteredNum, existNum);
+    }
+    else if(operator == 'DIV'){
+        existNum /= enteredNum;     
+        display('/', iniNum, enteredNum);  
+        entry("ADD", enteredNum, existNum);
+    }
 }
 
+function add(){     
+    calcOperator('ADD');  
+        
+}
 
 function subtract(){
-    let enteredNum = parseInt(userInput.value);
-    let iniNum = existNum;
-    existNum -= enteredNum;
-    display("-", iniNum, enteredNum);
-    entry("SUB", enteredNum, existNum);
+    calcOperator('SUB');
 }
 
 function multiply(){
-    let enteredNum = parseInt(userInput.value);
-    let iniNum = existNum;
-    existNum *= enteredNum;     
-    display("*", iniNum, enteredNum);    
-    entry("MUL", enteredNum, existNum);
+    calcOperator('MUL');
 } 
 
 function divide(){
-    let enteredNum = parseInt(userInput.value);
-    let iniNum = existNum;
-    existNum /= enteredNum;
-    display("/", iniNum, enteredNum);
-    entry("DIV", enteredNum, existNum);
+    calcOperator('DIV');
 }
 
 addBtn.addEventListener('click', add);
