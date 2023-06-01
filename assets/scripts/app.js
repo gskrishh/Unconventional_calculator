@@ -21,6 +21,7 @@ function entry(operator, befNum, reNum){
 
 function calcOperator(operator){
     let enteredNum = parseInt(userInput.value);
+    userInput.value = '';
     let iniNum = existNum;
 
     if (
